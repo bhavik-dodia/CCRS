@@ -267,6 +267,7 @@ class _registerstate extends State<register> {
                           return null;
                         },
                         controller: _email,
+                        textCapitalization: TextCapitalization.sentences,
                       ),
                       Padding(
                         padding: EdgeInsets.only(top: 20),
@@ -355,6 +356,7 @@ class _registerstate extends State<register> {
                           return null;
                         },
                         controller: _addl1,
+                        textCapitalization: TextCapitalization.sentences,
                       ),
                       Padding(
                         padding: EdgeInsets.only(top: 20),
@@ -373,6 +375,7 @@ class _registerstate extends State<register> {
                           return null;
                         },
                         controller: _addl2,
+                        textCapitalization: TextCapitalization.sentences,
                       ),
                       Padding(
                         padding: EdgeInsets.only(top: 20),
@@ -391,6 +394,7 @@ class _registerstate extends State<register> {
                           return null;
                         },
                         controller: _city,
+                        textCapitalization: TextCapitalization.sentences,
                       ),
                       Padding(
                         padding: EdgeInsets.only(top: 20),
@@ -409,6 +413,7 @@ class _registerstate extends State<register> {
                           return null;
                         },
                         controller: _state,
+                        textCapitalization: TextCapitalization.sentences,
                       ),
                       Container(
                         padding: const EdgeInsets.only(top: 20),

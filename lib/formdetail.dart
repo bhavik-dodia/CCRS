@@ -98,7 +98,7 @@ class FormDetail extends StatelessWidget {
                             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
                             splashColor: Colors.lightBlueAccent,
                             onPressed: () {
-                              db.collection('Forms').document(doc).updateData({'06 Status': 'Close'});
+                              db.collection('Forms').document(doc).updateData({'08 Status': 'Close'});
                               /*db.collection("Forms").document(doc).get().then((datasnapshot) {
                                 if(datasnapshot.exists) {
                                   s=datasnapshot.data["02 Enrollment No"];

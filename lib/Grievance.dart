@@ -92,6 +92,8 @@ class _grievancestate extends State<grievance> {
       await db.collection("Forms").add(data).whenComplete(() {
         print("Form Added");
       }).catchError((e) => print(e));
+      Toast.show("Form Submitted Successfuly", context, duration: Toast.LENGTH_LONG,gravity: Toast.BOTTOM);
+      Navigator.of(context).pop();
       /*doc=docId.documentID;
       db.collection("Users").document("$s").get().then((datasnapshot) {
         if(datasnapshot.exists) {
