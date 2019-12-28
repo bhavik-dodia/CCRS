@@ -1,4 +1,4 @@
-**CCRS - Citizen Complaint Redressal System
+CCRS - Citizen Complaint Redressal System
 
 The basic idea behind our idea is to increase transparency between government and citizens.
 
