@@ -5,6 +5,7 @@ import 'package:cloud_functions/cloud_functions.dart';
 import 'package:toast/toast.dart';
 
 
+// ignore: must_be_immutable
 class FormDetail extends StatelessWidget {
   FormDetail({@required this.doc, this.description, this.category, this.subject, this.down});
 

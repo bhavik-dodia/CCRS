@@ -1,4 +1,4 @@
-import 'package:ccs/main.dart';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -7,6 +7,7 @@ import 'package:toast/toast.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 // ignore: camel_case_types
 String s1;
+// ignore: camel_case_types
 class cnfusr extends StatefulWidget {
   cnfusr({Key key, this.title}) : super(key: key);
 

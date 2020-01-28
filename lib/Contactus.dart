@@ -10,10 +10,9 @@ class contactus extends StatelessWidget {
       resizeToAvoidBottomPadding: false,
       resizeToAvoidBottomInset: false,
       backgroundColor: Colors.black,
-      appBar: AppBar(
-        title: Text("Contact Us", style: TextStyle(color: Colors.white)),
-        iconTheme: new IconThemeData(color: Colors.white),
-      ),
+      // appBar: AppBar(
+      //   title: Text("Contact Us", style: TextStyle(color: Colors.white)),
+      // ),
       body: Stack(
         children: <Widget>[
           Image(
@@ -25,10 +24,13 @@ class contactus extends StatelessWidget {
             colorBlendMode: BlendMode.darken,
           ),
           Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: <Widget>[          
+              Padding(padding: EdgeInsets.only(top: 50),),
+              Text("Contact Us",style: TextStyle(fontSize: 25,fontWeight: FontWeight.bold,color: Colors.white),textAlign: TextAlign.center,),
+              Padding(padding: EdgeInsets.only(top: 175),),
               Padding(
-                padding: EdgeInsets.all(8.0),
+                padding: EdgeInsets.all(10.0),
                 child: Text(
                   """\nTeam Enigma\n\nVadodara-Mumbai NH#8, Varnama, Vadodara-391240 Gujarat, India.\n\nPhone Number:\n+91 7818044311\n+91 9913971152\n""",
                   style: TextStyle(fontSize: 20.0, color: Colors.white),

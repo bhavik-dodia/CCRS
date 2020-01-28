@@ -1,6 +1,5 @@
 import 'package:ccs/main.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -104,6 +103,7 @@ class _registerstate extends State<register> {
                   _auth.currentUser().then((user) async {
                     if (user != null) {
                       Map<String,dynamic> data = <String,dynamic>{
+                        "Account Type": 'User',
                         "Name": _name.text,
                         "Email Id": _email.text,
                         "Password": _password.text,

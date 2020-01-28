@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:cloud_functions/cloud_functions.dart';
-import 'package:toast/toast.dart';
 
 
+// ignore: camel_case_types
 class historydisplay extends StatelessWidget {
   historydisplay({@required this.doc, this.description, this.category, this.subject, this.status, this.down});
 

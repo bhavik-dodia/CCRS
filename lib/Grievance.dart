@@ -8,17 +8,16 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:path/path.dart' as Path;
 import 'main.dart';
-import 'home.dart';
 import 'dart:io';
-
 import 'package:firebase_storage/firebase_storage.dart';
+
+String name="";
 // ignore: camel_case_types
 class grievance extends StatefulWidget {
   grievance({Key key, this.title}) : super(key: key);
 
   final String title;
-
-
+  
   @override
   _grievancestate createState() => new _grievancestate();
 }
@@ -59,7 +58,7 @@ class _grievancestate extends State<grievance> {
 
   sendEmail() {
       return callable.call({
-        'user': '$s',
+        'user': s,
         'text': "Thanks for contacting us!\nYour request ["+doc+"] has been received and we\'ll get back to you as soon as possible.\n\nYour form details are as following,\n1. Category: $_categories\n2. Subject: "+_subject.text+"\n3. Description: "+_description.text,
       }).then((res) => print(res.data));
   }
@@ -70,7 +69,7 @@ class _grievancestate extends State<grievance> {
       String fileName = Path.basenameWithoutExtension(_imageFile.path);
       reference = FirebaseStorage.instance.ref().child('CCRS/Images/$fileName');
       StorageUploadTask uploadTask = reference.putFile(_imageFile);
-      StorageTaskSnapshot taskSnapshot = await uploadTask.onComplete;
+      await uploadTask.onComplete;
       String downloadAddress = await reference.getDownloadURL();
       download = downloadAddress;
       print(download);
@@ -84,8 +83,8 @@ class _grievancestate extends State<grievance> {
         "05 Subject": _subject.text,
         "06 Description": _description.text,
         "07 ImageURL": download,
-        "03 Email Id": '$s',
-        "02 Name": '$name',
+        "03 Email Id": s,
+        "02 Name": name,
         "01 Submitted On": Timestamp.now(),
         "08 Status": 'Open',
       };
@@ -94,15 +93,7 @@ class _grievancestate extends State<grievance> {
       }).catchError((e) => print(e));
       Toast.show("Form Submitted Successfuly", context, duration: Toast.LENGTH_LONG,gravity: Toast.BOTTOM);
       Navigator.of(context).pop();
-      /*doc=docId.documentID;
-      db.collection("Users").document("$s").get().then((datasnapshot) {
-        if(datasnapshot.exists) {
-          emailAddress = datasnapshot.data["Email Id"];
-          pass = datasnapshot.data["Password"];
-        }
-      }).catchError((e1) => print(e1));
-      print(emailAddress);
-      print(pass);*/
+      auth.signOut();
     }
   }
 
@@ -111,10 +102,10 @@ class _grievancestate extends State<grievance> {
     return new Scaffold(
       resizeToAvoidBottomPadding: false,
       resizeToAvoidBottomInset: false,
-      appBar: new AppBar(
-        title: new Text("Grievances Form", style: TextStyle(color: Colors.white)),
-        iconTheme: new IconThemeData(color: Colors.white),
-      ),
+      // appBar: new AppBar(
+      //   title: new Text("Grievances Form", style: TextStyle(color: Colors.white)),
+      //   iconTheme: new IconThemeData(color: Colors.white),
+      // ),
       body: new SafeArea(
         top: false,
         bottom: false,
@@ -123,6 +114,8 @@ class _grievancestate extends State<grievance> {
           child: new ListView(
             padding: const EdgeInsets.symmetric(horizontal: 16.0),
             children: <Widget>[
+              Padding(padding: EdgeInsets.only(top: 50),),
+              Text("Grievance Form",style: TextStyle(fontSize: 25,fontWeight: FontWeight.bold,),textAlign: TextAlign.center,),
               new FormField(
                 builder: (FormFieldState state) {
                   return InputDecorator(
