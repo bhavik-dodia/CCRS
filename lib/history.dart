@@ -86,9 +86,9 @@ class _displayState extends State<display> {
   super.initState();
   babyStream = Firestore.instance
                               .collection('Forms')
-                              .where("03 Email Id", isEqualTo: s)
-                              .orderBy("01 Submitted On", descending: true)
+                              .where("03 Email Id", isEqualTo: 'fa')
                               .snapshots();
+
 }
   Widget build(BuildContext context) {
     return Scaffold(
@@ -124,6 +124,9 @@ class _displayState extends State<display> {
                           stream: babyStream,
                           builder: (BuildContext context,
                               AsyncSnapshot<QuerySnapshot> snapshot) {
+                            snapshot.data.documents.sort((b,a){
+                              return a['01 Submitted On'].compareTo(b['01 Submitted On']);
+                            });
                             if (snapshot.hasError)
                               return new Text('Error: ${snapshot.error}');
                             if (!snapshot.hasData)
