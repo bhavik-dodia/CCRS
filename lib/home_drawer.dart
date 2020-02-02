@@ -1,10 +1,12 @@
 import 'dart:io';
-
 import 'package:ccs/Grievance.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:toast/toast.dart';
 import 'app_theme.dart';
 import 'package:flutter/material.dart';
+import 'Contactus.dart';
+import 'history.dart';
+import 'main.dart' as main;
 
 class HomeDrawer extends StatefulWidget {
   const HomeDrawer(
@@ -24,6 +26,7 @@ class HomeDrawer extends StatefulWidget {
 
 class _HomeDrawerState extends State<HomeDrawer> {
   List<DrawerList> drawerList;
+
   @override
   void initState() {
     setdDrawerListArray();
@@ -101,7 +104,7 @@ class _HomeDrawerState extends State<HomeDrawer> {
                             child: ClipRRect(
                               borderRadius:
                                   const BorderRadius.all(Radius.circular(60.0)),
-                              child: Image.asset('assets/complaint.png'),
+                              child: Image.asset('assets/complaint.png',color: Colors.blueGrey, colorBlendMode: BlendMode.hue,),
                             ),
                           ),
                         ),
@@ -111,7 +114,7 @@ class _HomeDrawerState extends State<HomeDrawer> {
                   Padding(
                     padding: const EdgeInsets.only(top: 8, left: 4),
                     child: Text(
-                      name,
+                      main.name,
                       style: TextStyle(
                         fontWeight: FontWeight.w600,
                         color: AppTheme.grey,
@@ -163,11 +166,12 @@ class _HomeDrawerState extends State<HomeDrawer> {
                 ),
                 onTap: () {
                   FirebaseAuth.instance.signOut();
-                  Toast.show("You have successfully Logged Out", context, duration: Toast.LENGTH_LONG, gravity: Toast.BOTTOM);
+                  Toast.show("You have successfully Logged Out", context,
+                      duration: Toast.LENGTH_LONG, gravity: Toast.BOTTOM);
                   Navigator.of(context).pop();
                   Future.delayed(const Duration(milliseconds: 500), () {
                     exit(1);
-                    });
+                  });
                 },
               ),
               SizedBox(
@@ -187,7 +191,22 @@ class _HomeDrawerState extends State<HomeDrawer> {
         splashColor: Colors.grey.withOpacity(0.1),
         highlightColor: Colors.transparent,
         onTap: () {
-          navigationtoScreen(listData.index);
+          //navigationtoScreen(listData.index);
+          if (listData.index.toString() == "DrawerIndex.Grievances")
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => grievance()),
+            );
+          else if (listData.index.toString() == "DrawerIndex.History")
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => display()),
+            );
+          else if (listData.index.toString() == "DrawerIndex.About")
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => contactus()),
+            );
         },
         child: Stack(
           children: <Widget>[

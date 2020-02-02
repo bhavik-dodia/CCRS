@@ -19,7 +19,7 @@ class _MyHomePageState extends State<MyHomePage> {
       body: Stack(
         children: <Widget>[
           Image(
-            image: AssetImage("assets/abstract_bg.jpg"),
+            image: AssetImage("assets/bg.jpg"),
             width: size.width,
             height: size.height,
             fit: BoxFit.fill,
@@ -29,8 +29,8 @@ class _MyHomePageState extends State<MyHomePage> {
           Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
-              Padding(padding: EdgeInsets.only(top: 50),),
-              Text("Home Page",style: TextStyle(fontSize: 25,fontWeight: FontWeight.bold,color: Colors.white),),
+              Padding(padding: EdgeInsets.only(top: 53),),
+              Text("Home Page",style: TextStyle(fontSize: 25,fontWeight: FontWeight.bold,color: Colors.white,),),
               Padding(padding: EdgeInsets.only(top: 150),),
               Padding(
                 padding: EdgeInsets.all(15.0),
@@ -43,7 +43,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 height: 60,
                 color: Colors.white,
                 textColor: Colors.lightBlue,
-                child: Text("Grievances Form",style: TextStyle(fontSize: 20),),
+                child: Text("Grievance Form",style: TextStyle(fontSize: 20),),
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(100)),
                 splashColor: Colors.white24,
                 onPressed: () {

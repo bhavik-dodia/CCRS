@@ -1,15 +1,14 @@
 import 'dart:async';
 import 'package:avatar_glow/avatar_glow.dart';
 import 'package:ccs/cnfusr.dart';
-import 'package:ccs/drawer_user_controller.dart';
 import 'package:ccs/forget.dart';
 import 'package:ccs/navigation.dart';
 import 'package:ccs/register.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'app_theme.dart';
 import 'delayed_animation.dart';
-import 'home.dart';
 import 'package:toast/toast.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -17,7 +16,7 @@ import 'admin.dart';
 
 final db = Firestore.instance;
 bool ot, ot1;
-String s = "",name="";
+String s = "",name="",dept="";
 
 void main() {
   //SystemChrome.setEnabledSystemUIOverlays([]);
@@ -37,7 +36,7 @@ class MyApp extends StatelessWidget {
         '/forget': (BuildContext context) => forget(),
       },
       theme: ThemeData(
-          primarySwatch: Colors.lightBlue, accentColor: Colors.blueAccent),
+          primarySwatch: Colors.lightBlue, accentColor: Colors.lightBlueAccent),
     );
   }
 }
@@ -223,6 +222,8 @@ class _MyAppState extends State<Login> with SingleTickerProviderStateMixin {
             phoneNo = datasnapshot.data['Phone Number'].toString();
             name = datasnapshot.data['Name'].toString();
             type = datasnapshot.data['Account Type'].toString();
+            if(type == 'Admin')
+              dept = datasnapshot.data['Department'].toString();
             verifyPhone();
           } else
             Toast.show("Invalid Password!!!", context,
@@ -264,7 +265,7 @@ class _MyAppState extends State<Login> with SingleTickerProviderStateMixin {
           fit: StackFit.expand,
           children: <Widget>[
             Image(
-              image: AssetImage("assets/abstract_bg.jpg"),
+              image: AssetImage("assets/bg.jpg"),
               fit: BoxFit.cover,
               color: Colors.black54,
               colorBlendMode: BlendMode.darken,
@@ -291,15 +292,24 @@ class _MyAppState extends State<Login> with SingleTickerProviderStateMixin {
                         repeat: true,
                         repeatPauseDuration: Duration(seconds: 2),
                         startDelay: Duration(seconds: 1),
-                        child: Material(
-                          elevation: 8.0,
-                          shape: CircleBorder(),
-                          child: CircleAvatar(
-                            backgroundColor: Colors.white,
-                            child: Image.asset("assets/complaint.png"),
-                            radius: 50.0,
+                        child: Container(
+                            height: 105,
+                            width: 105,
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              boxShadow: <BoxShadow>[
+                                BoxShadow(
+                                    color: AppTheme.grey.withOpacity(0.6),
+                                    offset: const Offset(2.0, 4.0),
+                                    blurRadius: 8),
+                              ],
+                            ),
+                            child: ClipRRect(
+                              borderRadius:
+                                  const BorderRadius.all(Radius.circular(60.0)),
+                              child: Image.asset('assets/complaint.png',color: Colors.blueGrey, colorBlendMode: BlendMode.hue,),
+                            ),
                           ),
-                        ),
                       ),
                       DelayedAimation(
                         child: Text(
@@ -393,7 +403,7 @@ class _MyAppState extends State<Login> with SingleTickerProviderStateMixin {
                                 Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                        builder: (context) => cnfusr()));
+                                        builder: (context) => NavigationHomeScreen()));
                               },
                               child: Text('Forgot Password',
                                   style: TextStyle(color: Colors.white70)),

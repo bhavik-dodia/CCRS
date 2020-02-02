@@ -10,13 +10,10 @@ class contactus extends StatelessWidget {
       resizeToAvoidBottomPadding: false,
       resizeToAvoidBottomInset: false,
       backgroundColor: Colors.black,
-      // appBar: AppBar(
-      //   title: Text("Contact Us", style: TextStyle(color: Colors.white)),
-      // ),
       body: Stack(
         children: <Widget>[
           Image(
-            image: AssetImage("assets/abstract_bg.jpg"),
+            image: AssetImage("assets/bg.jpg"),
             width: size.width,
             height: size.height,
             fit: BoxFit.fill,
@@ -25,14 +22,14 @@ class contactus extends StatelessWidget {
           ),
           Column(
             mainAxisAlignment: MainAxisAlignment.start,
-            children: <Widget>[          
-              Padding(padding: EdgeInsets.only(top: 50),),
-              Text("Contact Us",style: TextStyle(fontSize: 25,fontWeight: FontWeight.bold,color: Colors.white),textAlign: TextAlign.center,),
+            children: <Widget>[
+              Padding(padding: EdgeInsets.only(top: 53),),
+              Text("About Us",style: TextStyle(fontSize: 25,fontWeight: FontWeight.bold,color: Colors.white),textAlign: TextAlign.center,),
               Padding(padding: EdgeInsets.only(top: 175),),
               Padding(
-                padding: EdgeInsets.all(10.0),
+                padding: EdgeInsets.all(20.0),
                 child: Text(
-                  """\nTeam Enigma\n\nVadodara-Mumbai NH#8, Varnama, Vadodara-391240 Gujarat, India.\n\nPhone Number:\n+91 7818044311\n+91 9913971152\n""",
+                  """\nTeam Enigma\n\nPhone Number:\nAbhishek Doshi: +91 7818044311\nBhavik Dodia: +91 9913971152\nRonak Joshi: +91 9033365867""",
                   style: TextStyle(fontSize: 20.0, color: Colors.white),
                   softWrap: true,
                   textAlign: TextAlign.justify,),

@@ -33,6 +33,7 @@ dependencies:
   cloud_firestore: ^0.13.0
   cloud_functions: ^0.4.1+6
   image_picker: ^0.6.2
+  mailer2: ^1.2.5
   firebase_storage: ^3.1.0
 
 dev_dependencies:
@@ -58,6 +59,7 @@ flutter:
     - assets/abstract_bg.jpg
     - assets/abstract_bg1.jpg
     - assets/abstract_bg2.jpg
+    - assets/bg.jpg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
