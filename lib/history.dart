@@ -67,6 +67,23 @@ class CustomCard extends StatelessWidget {
 // ignore: camel_case_types
 class display extends StatelessWidget {
   @override
+<<<<<<< HEAD
+=======
+  _displayState createState() => _displayState();
+}
+
+class _displayState extends State<display> {
+  Stream babyStream;
+  @override
+  void initState() {
+  super.initState();
+  babyStream = Firestore.instance
+                              .collection('Forms')
+                              .where("03 Email Id", isEqualTo: 'fa')
+                              .snapshots();
+
+}
+>>>>>>> d3183488e653c3ae80ba3210a0edfa41f1d42ae9
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
@@ -80,6 +97,7 @@ class display extends StatelessWidget {
             color: Colors.grey.shade800,
             colorBlendMode: BlendMode.darken,
           ),
+<<<<<<< HEAD
           Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
@@ -150,6 +168,59 @@ class display extends StatelessWidget {
                 ),
               ),
             ],
+=======
+          Text(
+            "History",
+            style: TextStyle(
+                fontSize: 25,
+                fontWeight: FontWeight.bold,
+                color: Colors.white),
+            textAlign: TextAlign.center,
+          ),
+          SingleChildScrollView(
+                      child: Container(height: MediaQuery.of(context).size.height-90,
+                        padding: const EdgeInsets.all(10.0),
+                        child: StreamBuilder<QuerySnapshot>(
+                          stream: babyStream,
+                          builder: (BuildContext context,
+                              AsyncSnapshot<QuerySnapshot> snapshot) {
+                            snapshot.data.documents.sort((b,a){
+                              return a['01 Submitted On'].compareTo(b['01 Submitted On']);
+                            });
+                            if (snapshot.hasError)
+                              return new Text('Error: ${snapshot.error}');
+                            if (!snapshot.hasData)
+                              return new Text(
+                                  'No forms are available now!!!\n\nPlease try again later.',
+                                  style: TextStyle(fontSize: 15));
+                            switch (snapshot.connectionState) {
+                              case ConnectionState.waiting:
+                                return Text(
+                                  'Retrieving Forms...',
+                                  style: TextStyle(fontSize: 20),
+                                );
+                              default:
+                                return new ListView(
+                                  shrinkWrap: true,
+                                  scrollDirection: Axis.vertical,
+                                  children: snapshot.data.documents
+                                      .map((DocumentSnapshot document) {
+                                    return CustomCard(
+                                      doc: document.documentID,
+                                      category: document['04 Category'],
+                                      department: document['05 Department'],
+                                      subject: document['06 Subject'],
+                                      description: document['07 Description'],
+                                      status: document['09 Status'],
+                                      down: document['08 ImageURL'],
+                                    );
+                                  }).toList(),
+                                );
+                            }
+                          },
+                        ),
+                      ),
+>>>>>>> d3183488e653c3ae80ba3210a0edfa41f1d42ae9
           ),
         ],
       ),
