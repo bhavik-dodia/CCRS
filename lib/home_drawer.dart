@@ -117,6 +117,7 @@ class _HomeDrawerState extends State<HomeDrawer> {
                       main.name,
                       style: TextStyle(
                         fontWeight: FontWeight.w600,
+                        fontFamily: 'Google-Sans',
                         color: AppTheme.grey,
                         fontSize: 18,
                       ),
@@ -252,6 +253,7 @@ class _HomeDrawerState extends State<HomeDrawer> {
                     listData.labelName,
                     style: TextStyle(
                       fontWeight: FontWeight.w500,
+                      fontFamily: 'Google-Sans',
                       fontSize: 16,
                       color: widget.screenIndex == listData.index
                           ? Colors.blue

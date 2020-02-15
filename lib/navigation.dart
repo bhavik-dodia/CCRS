@@ -2,6 +2,7 @@ import 'package:ccs/Contactus.dart';
 import 'package:ccs/Grievance.dart';
 import 'package:ccs/history.dart';
 import 'package:ccs/home.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'app_theme.dart';
 import 'drawer_user_controller.dart';
 import 'home_drawer.dart';
@@ -24,26 +25,35 @@ class _NavigationHomeScreenState extends State<NavigationHomeScreen> {
     screenView = const MyHomePage();
     super.initState();
   }
+  
+  Future<bool> _requestPop() {
+    FirebaseAuth.instance.signOut();
+    print("Sign Out");
+    return Future.value(true);
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: AppTheme.nearlyWhite,
-      child: SafeArea(
-        top: false,
-        bottom: false,
-        child: Scaffold(
-          backgroundColor: AppTheme.nearlyWhite,
-          body: DrawerUserController(
-            screenIndex: drawerIndex,
-            drawerWidth: MediaQuery.of(context).size.width * 0.75,
-            animationController: (AnimationController animationController) {
-              sliderAnimationController = animationController;
-            },
-            onDrawerCall: (DrawerIndex drawerIndexdata) {
-              changeIndex(drawerIndexdata);
-            },
-            screenView: screenView,
+    return WillPopScope(
+      onWillPop: _requestPop,
+          child: Container(
+        color: AppTheme.nearlyWhite,
+        child: SafeArea(
+          top: false,
+          bottom: false,
+          child: Scaffold(
+            backgroundColor: AppTheme.nearlyWhite,
+            body: DrawerUserController(
+              screenIndex: drawerIndex,
+              drawerWidth: MediaQuery.of(context).size.width * 0.75,
+              animationController: (AnimationController animationController) {
+                sliderAnimationController = animationController;
+              },
+              onDrawerCall: (DrawerIndex drawerIndexdata) {
+                changeIndex(drawerIndexdata);
+              },
+              screenView: screenView,
+            ),
           ),
         ),
       ),

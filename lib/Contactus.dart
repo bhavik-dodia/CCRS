@@ -17,20 +17,20 @@ class contactus extends StatelessWidget {
             width: size.width,
             height: size.height,
             fit: BoxFit.fill,
-            color: Colors.black54, //lightens the image
+            color: Colors.grey.shade800,
             colorBlendMode: BlendMode.darken,
           ),
           Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
               Padding(padding: EdgeInsets.only(top: 53),),
-              Text("About Us",style: TextStyle(fontSize: 25,fontWeight: FontWeight.bold,color: Colors.white),textAlign: TextAlign.center,),
+              Text("About Us",style: TextStyle(fontSize: 25,fontWeight: FontWeight.bold,color: Colors.white, fontFamily: 'Google-Sans'),textAlign: TextAlign.center,),
               Padding(padding: EdgeInsets.only(top: 175),),
               Padding(
                 padding: EdgeInsets.all(20.0),
                 child: Text(
                   """\nTeam Enigma\n\nPhone Number:\nAbhishek Doshi: +91 7818044311\nBhavik Dodia: +91 9913971152\nRonak Joshi: +91 9033365867""",
-                  style: TextStyle(fontSize: 20.0, color: Colors.white),
+                  style: TextStyle(fontSize: 20.0, color: Colors.white, fontFamily: 'Google-Sans'),
                   softWrap: true,
                   textAlign: TextAlign.justify,),
               ),

@@ -7,6 +7,7 @@ import 'package:ccs/register.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'app_theme.dart';
 import 'delayed_animation.dart';
 import 'package:toast/toast.dart';
@@ -16,7 +17,7 @@ import 'admin.dart';
 
 final db = Firestore.instance;
 bool ot, ot1;
-String s = "",name="",dept="";
+String s = "",name="",dept="",phone="",address="";
 
 void main() {
   //SystemChrome.setEnabledSystemUIOverlays([]);
@@ -222,6 +223,8 @@ class _MyAppState extends State<Login> with SingleTickerProviderStateMixin {
             phoneNo = datasnapshot.data['Phone Number'].toString();
             name = datasnapshot.data['Name'].toString();
             type = datasnapshot.data['Account Type'].toString();
+            address = datasnapshot.data['Address'].toString();
+            phone = phoneNo;
             if(type == 'Admin')
               dept = datasnapshot.data['Department'].toString();
             verifyPhone();
@@ -267,7 +270,7 @@ class _MyAppState extends State<Login> with SingleTickerProviderStateMixin {
             Image(
               image: AssetImage("assets/bg.jpg"),
               fit: BoxFit.cover,
-              color: Colors.black54,
+              color: Colors.grey.shade800,
               colorBlendMode: BlendMode.darken,
             ),
             Padding(
@@ -317,6 +320,7 @@ class _MyAppState extends State<Login> with SingleTickerProviderStateMixin {
                           style: TextStyle(
                               fontWeight: FontWeight.bold,
                               fontSize: 35.0,
+                              fontFamily: 'Google-Sans',
                               color: color),
                         ),
                         delay: delayedAmount + 500,
@@ -403,10 +407,10 @@ class _MyAppState extends State<Login> with SingleTickerProviderStateMixin {
                                 Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                        builder: (context) => NavigationHomeScreen()));
+                                        builder: (context) => cnfusr()));
                               },
                               child: Text('Forgot Password',
-                                  style: TextStyle(color: Colors.white70)),
+                                  style: TextStyle(color: Colors.white70, fontFamily: 'Google-Sans')),
                             ),
                             delay: delayedAmount + 2500,
                           ),
@@ -418,14 +422,9 @@ class _MyAppState extends State<Login> with SingleTickerProviderStateMixin {
                             child: FlatButton(
                               materialTapTargetSize:
                                   MaterialTapTargetSize.shrinkWrap,
-                              onPressed: () async {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => register()));
-                              },
+                             onPressed: () async { launch('https://ccrs-cd063.firebaseapp.com/registration.html'); },
                               child: Text('Register Now',
-                                  style: TextStyle(color: Colors.white70)),
+                                  style: TextStyle(color: Colors.white70,fontFamily: 'Google-Sans')),
                             ),
                             delay: delayedAmount + 2500,
                           ),
@@ -462,6 +461,7 @@ class _MyAppState extends State<Login> with SingleTickerProviderStateMixin {
             'Log In',
             style: TextStyle(
               fontSize: 20.0,
+              fontFamily: 'Google-Sans',
               fontWeight: FontWeight.bold,
               color: Colors.blueAccent,
             ),

@@ -94,7 +94,7 @@ class _cnfusrstate extends State<cnfusr> {
             contentPadding: EdgeInsets.all(10),
             actions: <Widget>[
               FlatButton(
-                child: Text('Done'),
+                child: Text('Done',style: TextStyle(fontFamily: 'Google-Sans'),),
                 onPressed: () {
                   _auth.currentUser().then((user) {
                     if (user != null) {
@@ -191,10 +191,6 @@ class _cnfusrstate extends State<cnfusr> {
     return new Scaffold(
       resizeToAvoidBottomPadding: false,
       resizeToAvoidBottomInset: false,
-      appBar: new AppBar(
-        title: new Text("Forgot Password", style: TextStyle(color: Colors.white)),
-        iconTheme: new IconThemeData(color: Colors.white),
-      ),
       body: Stack(
         children: <Widget>[
           Image(
@@ -202,60 +198,77 @@ class _cnfusrstate extends State<cnfusr> {
             width: size.width,
             height: size.height,
             fit: BoxFit.cover,
-            color: Colors.black54,
+            color: Colors.grey.shade800,
             colorBlendMode: BlendMode.darken,
           ),
-          Padding(padding:EdgeInsets.all(10),
-            child: Form(key: _formKey,
-              child: Theme(
-                data: ThemeData(
-                  brightness: Brightness.dark,
-                  accentColor: Colors.lightBlue,
-                  primaryColor: Colors.blueAccent,
-                  inputDecorationTheme: InputDecorationTheme(
-                    labelStyle: TextStyle(color: Colors.white, fontSize: 20.0),
-                  ),
+          Column(
+            children: <Widget>[
+              Padding(
+                padding: EdgeInsets.only(top: 53),
+              ),
+              Text(
+                "Forgot Password",
+                style: TextStyle(
+                  fontSize: 25,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
                 ),
-                child: Column(
-                  children: <Widget>[
-                    Padding(
-                      padding: EdgeInsets.only(top: 50),
+                textAlign: TextAlign.center,
+              ),
+            Container(
+              padding: const EdgeInsets.only(left: 20.0,right: 20.0),
+              child: Form(key: _formKey,
+                child: Theme(
+                  data: ThemeData(
+                    brightness: Brightness.dark,
+                    accentColor: Colors.lightBlue,
+                    primaryColor: Colors.blueAccent,
+                    inputDecorationTheme: InputDecorationTheme(
+                      labelStyle: TextStyle(color: Colors.white, fontSize: 20.0),
                     ),
-                    TextFormField(
-                      autofocus: false,
-                      keyboardType: TextInputType.text,
-                      decoration: InputDecoration(prefixIcon: Icon(Icons.email),hintText: 'Enter your email id',
-                        labelText: 'Email Id',
-                        contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
-                        border: OutlineInputBorder(borderRadius: BorderRadius.circular(32.0)),
+                  ),
+                  child: Column(
+                    children: <Widget>[
+                      Padding(
+                        padding: EdgeInsets.only(top: 50),
                       ),
-                      validator: (value){
-                        if(value.isEmpty)
-                          return 'Please enter Email Address';
-                        return null;
-                      },
-                      controller: _email,
-                    ),
-                    Padding(
-                      padding: EdgeInsets.only(top: 20),
-                    ),
-                    Container(
-                      padding: const EdgeInsets.only(top: 20),
-                      child: new MaterialButton(
-                        height: 60,
-                        minWidth: 200,
-                        color: Colors.white,
-                        textColor: Colors.blueAccent,
-                        child: Text('Verify', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
-                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(100)),
-                        splashColor: Colors.white12,
-                        onPressed: submit,
+                      TextFormField(
+                        autofocus: false,
+                        keyboardType: TextInputType.text,
+                        decoration: InputDecoration(prefixIcon: Icon(Icons.email),hintText: 'Enter your email id',
+                          labelText: 'Email Id',
+                          contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
+                          border: OutlineInputBorder(borderRadius: BorderRadius.circular(32.0)),
+                        ),
+                        validator: (value){
+                          if(value.isEmpty)
+                            return 'Please enter Email Address';
+                          return null;
+                        },
+                        controller: _email,
                       ),
-                    ),
-                  ],
+                      Padding(
+                        padding: EdgeInsets.only(top: 20),
+                      ),
+                      Container(
+                        padding: const EdgeInsets.only(top: 20),
+                        child: new MaterialButton(
+                          height: 60,
+                          minWidth: 200,
+                          color: Colors.white,
+                          textColor: Colors.blueAccent,
+                          child: Text('Verify', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
+                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(100)),
+                          splashColor: Colors.white12,
+                          onPressed: submit,
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),
+            ],
           ),
         ],
       ),
